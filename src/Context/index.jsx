@@ -1,6 +1,7 @@
 import { createContext, useState, useEffect } from "react";
-
+import { FakeApiInfo } from "./FakeApiInfo";
 export const ShoppingCartContext = createContext();
+
 
 export const initializeLocalStorage = () => {
   const accountInLocalStorage = localStorage.getItem("account");
@@ -63,9 +64,7 @@ export const ShoppingCartProvider = ({ children }) => {
   const [searchByCategory, setSearchByCategory] = useState(null);
 
   useEffect(() => {
-    fetch("https://api.escuelajs.co/api/v1/products")
-      .then((response) => response.json())
-      .then((data) => setItems(data));
+    setItems(FakeApiInfo());
   }, []);
 
   const filteredItemsByTitle = (items, searchByTitle) => {
